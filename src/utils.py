@@ -90,7 +90,7 @@ def plot_feature_importances(model, title, save=0):
     plt.xlabel('Score')
 
     if save:
-        plt.savefig('images/figures/{}.png'.format(title))
+        plt.savefig('images/figures/{}.png'.format(title).lower().replace(' ', '_'))
 
     plt.show()
 
@@ -142,7 +142,7 @@ def plot_learning_curve(model, X_, y_, title, save=0):
     plt.legend()
 
     if save:
-        plt.savefig('images/figures/{}.png'.format(title))
+        plt.savefig('images/figures/{}.png'.format(title).lower().replace(' ', '_'))
 
     plt.show()
 
@@ -160,7 +160,7 @@ def plot_confusion_matrix(model, X_, y_, title, save=0):
     plt.ylabel('True Labels')
 
     if save:
-        plt.savefig('images/figures/{}.png'.format(title))
+        plt.savefig('images/figures/{}.png'.format(title).lower().replace(' ', '_'))
 
     plt.show()
 

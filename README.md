@@ -12,10 +12,10 @@ extract the factors that are most important in this prediction.
 - [Usage](#usage)
 - [Notebooks](#notebooks)
 - [Model Training](#model-training)
-- [Evaluation](#evaluation)
+- [Model Evaluation](#model-evaluation)
 - [License](#license)
 
-## Installation 
+## Installation
 ### Prerequisites
 - **Git**: To clone this repository, you'll need to have Git installed. You can download it from [git-scm.com](https://git-scm.com/).
 - **Anaconda**: Make sure you have Anaconda or Miniconda installed. You can download it from [Anaconda's official website](https://www.anaconda.com/products/distribution#download-section).
