@@ -73,7 +73,7 @@ This project contains the following Jupyter notebooks:
 
 - `01_exploratory_data_analysis.ipynb`: Preprocessing steps, exploratory data analysis and visualizations.
 - `02_model_training.ipynb`: Models training and hyperparameter tuning.
-- `03_results.ipynb`: Models evaluation, comparison and performance metrics.
+- `03_model_evaluation.ipynb`: Models evaluation, comparison and performance metrics.
 
 ## Model Training
 You can find the code to train the models in the `02_model_training.ipynb` notebook. It includes:
@@ -82,7 +82,7 @@ You can find the code to train the models in the `02_model_training.ipynb` noteb
 - Hyperparameter tuning
 
 ## Model Evaluation
-The evaluation of the models is performed in the `03_results.ipynb` notebook. It includes:
+The evaluation of the models is performed in the `03_model_evaluation.ipynb` notebook. It includes:
 
 - Models comparison
 - Visualizations of models performance
