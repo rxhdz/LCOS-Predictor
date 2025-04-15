@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.feature_selection import mutual_info_classif, SelectFromModel
-from sklearn.model_selection import cross_val_score, GridSearchCV
+from sklearn.model_selection import cross_val_score, GridSearchCV, cross_val_predict
 from sklearn.model_selection import learning_curve
 from sklearn.metrics import confusion_matrix
 from sklearn.preprocessing import MinMaxScaler
@@ -27,14 +27,6 @@ def get_metrics(model, X_, y_):
     ]
 
 
-def best_model_per_grid(model, p_grid, X_, y_, criteria='accuracy'):
-    grid_search = GridSearchCV(model, p_grid, cv=5, scoring=criteria)
-    grid_search.fit(X_, y_)
-
-    print(grid_search.best_params_, grid_search.best_score_)
-    return grid_search.best_estimator_
-
-
 def get_tuned_model(model, X_, y_, criteria='mean'):
 
     selector = SelectFromModel(model, threshold=criteria).fit(X_, y_)
@@ -46,6 +38,14 @@ def get_tuned_model(model, X_, y_, criteria='mean'):
     tuned_model = model_.fit(X_select_df, y_)
 
     return tuned_model, feature_names
+
+
+def best_model_per_grid(model, p_grid, X_, y_, criteria='accuracy'):
+    grid_search = GridSearchCV(model, p_grid, cv=5, scoring=criteria)
+    grid_search.fit(X_, y_)
+
+    print(grid_search.best_params_, grid_search.best_score_)
+    return grid_search.best_estimator_
 
 
 def plot_mi_scores(mi_scores_, save=0, save_name='images/figures/mi_scores.png'):
@@ -148,7 +148,7 @@ def plot_learning_curve(model, X_, y_, title, save=0):
 
 
 def plot_confusion_matrix(model, X_, y_, title, save=0):
-    y_pred = model.predict(X_[model.feature_names_in_])
+    y_pred = cross_val_predict(model, X_[model.feature_names_in_], y_, cv=5)
     conf_matrix = confusion_matrix(y_, y_pred)
 
     conf_matrix_df = pd.DataFrame(conf_matrix, index=['Actual 0', 'Actual 1'], columns=['Predicted 0', 'Predicted 1'])
