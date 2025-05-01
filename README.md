@@ -13,6 +13,7 @@ extract the factors that are most important in this prediction.
 - [Notebooks](#notebooks)
 - [Model Training](#model-training)
 - [Model Evaluation](#model-evaluation)
+- [Explainability](#explainability)
 - [License](#license)
 
 ## Installation
@@ -74,6 +75,7 @@ This project contains the following Jupyter notebooks:
 - `01_exploratory_data_analysis.ipynb`: Preprocessing steps, exploratory data analysis and visualizations.
 - `02_model_training.ipynb`: Models training and hyperparameter tuning.
 - `03_model_evaluation.ipynb`: Models evaluation, comparison and performance metrics.
+- `04_explainability.ipynb`: Explanation of model results with SHAP
 
 ## Model Training
 You can find the code to train the models in the `02_model_training.ipynb` notebook. It includes:
@@ -87,6 +89,13 @@ The evaluation of the models is performed in the `03_model_evaluation.ipynb` not
 - Models comparison
 - Visualizations of models performance
 - Visualization of features' importance
+
+## Explainability
+A detailed explanation of the model results can be found in the `04_explainability.ipynb` notebook. 
+It includes:
+
+- Summary plot to visualize global contribution of each feature to the prediction.
+- Dependency plots of the most important features.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
