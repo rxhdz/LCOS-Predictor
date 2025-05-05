@@ -94,8 +94,9 @@ The evaluation of the models is performed in the `03_model_evaluation.ipynb` not
 A detailed explanation of the model results can be found in the `04_explainability.ipynb` notebook. 
 It includes:
 
-- Summary plot to visualize global contribution of each feature to the prediction.
-- Dependency plots of the most important features.
+- Summary plot to visualize global contribution of each feature to the prediction
+- Force plot for an instance of both classes for local explainability
+- Dependency plots of the most important features
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
