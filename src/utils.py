@@ -1,5 +1,3 @@
-import copy
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -28,14 +26,17 @@ def get_metrics(model, X_, y_):
 
 
 def get_tuned_model(model, X_, y_, criteria='mean'):
+    params = model.get_params()
+    model_ = model.__class__(**params)
 
-    selector = SelectFromModel(model, threshold=criteria).fit(X_, y_)
-    X_select = selector.transform(X_)
+    selector = SelectFromModel(estimator=model_, threshold=criteria)
+    selector.fit(X_, y_)
+
+    X_selected = selector.transform(X_)
     feature_names = X_.columns[selector.get_support()]
-    X_select_df = pd.DataFrame(X_select, columns=feature_names)
+    X_selected_df = pd.DataFrame(X_selected, columns=feature_names)
 
-    model_ = copy.deepcopy(model)
-    tuned_model = model_.fit(X_select_df, y_)
+    tuned_model = model_.fit(X_selected_df, y_)
 
     return tuned_model, feature_names
 
