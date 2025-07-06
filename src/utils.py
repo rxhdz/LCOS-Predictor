@@ -17,11 +17,12 @@ def get_mi_scores(X_, y_):
 
 
 def get_metrics(model, X_, y_):
+    features = model.feature_names_in_
     return [
-        cross_val_score(model, X_, y_, cv=5, scoring="accuracy").mean(),
-        cross_val_score(model, X_, y_, cv=5, scoring="recall").mean(),
-        cross_val_score(model, X_, y_, cv=5, scoring="roc_auc").mean(),
-        cross_val_score(model, X_, y_, cv=5, scoring="f1").mean(),
+        cross_val_score(model, X_[features], y_, cv=5, scoring="accuracy").mean(),
+        cross_val_score(model, X_[features], y_, cv=5, scoring="recall").mean(),
+        cross_val_score(model, X_[features], y_, cv=5, scoring="roc_auc").mean(),
+        cross_val_score(model, X_[features], y_, cv=5, scoring="f1").mean(),
     ]
 
 
@@ -96,10 +97,11 @@ def plot_feature_importances(model, title, save=0):
     plt.show()
 
 
-def plot_cross_val_performance(model, X_, y_, title, save=0, save_name='images/figures/cross_val.png'):
-    cv_scores = cross_val_score(model, X_, y_, cv=5, scoring='accuracy')
+def plot_cross_val_performance(model, X_, y_, title, save=0):
+    features = model.feature_names_in_
+    cv_scores = cross_val_score(model, X_[features], y_, cv=5, scoring='accuracy')
 
-    df_fold_performance = pd.DataFrame({"FinalRandomForestClassifier": cv_scores}, index=range(1, 6))
+    df_fold_performance = pd.DataFrame({f"Final{model.__class__.__name__}": cv_scores}, index=range(1, 6))
 
     df_fold_performance.plot(figsize=(10, 6), marker="o")
     plt.title(title)
@@ -109,7 +111,7 @@ def plot_cross_val_performance(model, X_, y_, title, save=0, save_name='images/f
     plt.ylim(0, 1)
 
     if save:
-        plt.savefig(save_name)
+        plt.savefig('images/figures/{}.png'.format(title).lower().replace(' ', '_'))
 
     plt.show()
 
@@ -133,7 +135,8 @@ def plot_model_comparison(model1, model2, X_, y_, save=0, save_name='images/figu
 
 
 def plot_learning_curve(model, X_, y_, title, save=0):
-    train_sizes, train_scores, test_scores = learning_curve(model, X_, y_, cv=5, scoring='accuracy')
+    features = model.feature_names_in_
+    train_sizes, train_scores, test_scores = learning_curve(model, X_[features], y_, cv=5, scoring='accuracy')
     plt.figure(figsize=(10, 6))
     plt.plot(train_sizes, np.mean(train_scores, axis=1), label='Training', marker='o')
     plt.plot(train_sizes, np.mean(test_scores, axis=1), label='Validation', marker='o')
@@ -149,7 +152,8 @@ def plot_learning_curve(model, X_, y_, title, save=0):
 
 
 def plot_confusion_matrix(model, X_, y_, title, save=0):
-    y_pred = cross_val_predict(model, X_[model.feature_names_in_], y_, cv=5)
+    features = model.feature_names_in_
+    y_pred = cross_val_predict(model, X_[features], y_, cv=5)
     conf_matrix = confusion_matrix(y_, y_pred)
 
     conf_matrix_df = pd.DataFrame(conf_matrix, index=['Actual 0', 'Actual 1'], columns=['Predicted 0', 'Predicted 1'])
