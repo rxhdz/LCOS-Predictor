@@ -1,102 +1,104 @@
-# Low Cardiac Output Syndrome Predictor
+# Predictor del Síndrome de Bajo Gasto Cardíaco
 
-## Description
-This project focuses on the identification of prognostic risk factors for Low Cardiac Output Syndrome in 
-patients undergoing myocardial revascularization at the Cardiocenter University Hospital Ernesto Che 
-Guevara (Villa clara, Cuba) using artificial intelligence (AI) techniques. The main objective of the study is 
-to develop a model capable of predicting whether a patient will present the syndrome and, once developed, to 
-extract the factors that are most important in this prediction.
+## Descripción
+Este proyecto se enfoca en la identificación de factores de riesgo pronóstico para el Síndrome de Bajo Gasto Cardíaco 
+en pacientes sometidos a revascularización miocárdica en el Hospital Universitario Cardiocentro Ernesto Che Guevara 
+(Villa Clara, Cuba), utilizando técnicas de inteligencia artificial (IA). El objetivo principal del estudio es 
+desarrollar un modelo capaz de predecir si un paciente presentará el síndrome y, una vez desarrollado, extraer los 
+factores más relevantes en dicha predicción.
 
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Notebooks](#notebooks)
-- [Model Training](#model-training)
-- [Model Evaluation](#model-evaluation)
-- [Explainability](#explainability)
-- [License](#license)
+## Tabla de Contenidos
+* [Instalación](#instalación)
+* [Uso](#uso)
+* [Notebooks](#notebooks)
+* [Entrenamiento del Modelo](#entrenamiento-del-modelo)
+* [Evaluación del Modelo](#evaluación-del-modelo)
+* [Explicabilidad](#explicabilidad)
+* [Licencia](#licencia)
 
-## Installation
-### Prerequisites
-- **Git**: To clone this repository, you'll need to have Git installed. You can download it from [git-scm.com](https://git-scm.com/).
-- **Anaconda**: Make sure you have Anaconda or Miniconda installed. You can download it from [Anaconda's official website](https://www.anaconda.com/products/distribution#download-section).
-- **Python**: This project is compatible with Python 3.12.7. 
+## Instalación
 
-### Setup
-0. Clone the repository:
+### Requisitos Previos
+- **Git**: Para clonar este repositorio, se debe contar con Git instalado. 
+Puede descargarse desde [git-scm.com](https://git-scm.com/).
+- **Anaconda**: Se requiere tener instalado Anaconda o Miniconda. Está disponible en 
+[sitio oficial de Anaconda](https://www.anaconda.com/products/distribution#download-section).
+- **Python**: El proyecto es compatible con la versión 3.12.7 de Python.
+
+### Configuración
+0. Clonar el repositorio:
    ```bash
    git clone https://github.com/rxhdz/LCOS-Predictor.git
    cd LCOS-Predictor
+   ```
 
-### Using `environment.yml`
-1. Create a new conda environment using the `environment.yml` file:
+### Usando `environment.yml`
+1. Crear un nuevo entorno de conda utilizando el archivo `environment.yml`:
    ```bash
    conda env create -f environment.yml
    ```
-2. Activate the conda environment:
+2. Activar el entorno de conda:
    ```bash
    conda activate low-cardiac-output-syndrome-predictor
    ```
 
-### Using `requirements.txt` (Optional)
-If you prefer to create a virtual environment manually or if you want to install additional packages, 
-you can use the `requirements.txt` file:
-1. Create a new conda environment:
+### Usando `requirements.txt` (Opcional)
+Si se prefiere crear el entorno virtual manualmente o si se desea instalar paquetes adicionales, puede utilizarse el 
+archivo `requirements.txt`:
+
+1. Crear un nuevo entorno de conda:
    ```bash
-   conda create --name your_environment_name python=3.12.7.
+   conda create --name nombre_de_entorno python=3.12.7
    ```
-2. Activate the environment:
+2. Activar el entorno
    ```bash
-   conda activate your_environment_name # Change your_environment_name to your name of preference
+   conda activate nombre_de_entorno  # Reemplazar por el nombre preferido
    ```
-3. Install the required packages:
+3. Instalar los paquetes necesarios:
    ```bash
    pip install -r requirements.txt
    ```
 
-### Verify Installation
-To verify that the environment is set up correctly, you can run:
+### Verificar la Instalación
+Para verificar que el entorno se ha configurado correctamente, se puede ejecutar:
 ```bash
-    conda list  # This will show all installed packages in the environment
+conda list  # Muestra todos los paquetes instalados en el entorno
 ```
 
-## Usage
-To run the notebooks, open Jupyter Notebook or JupyterLab and navigate to the project directory. You can do so
-with the following command:
+## Uso
+Para ejecutar los notebooks, se debe abrir Jupyter Notebook o JupyterLab y navegar hasta el directorio del proyecto. 
+Esto puede hacerse con el siguiente comando:
 ```bash
-    jupyter notebook
+jupyter notebook
 ```
-This should open up your browser, and you should see Jupyter's tree view with the contents of the directory.
-Then, open the desired notebook file.
+
+Este comando abrirá el navegador y mostrará la vista de árbol de Jupyter con el contenido del directorio. Luego, se 
+debe abrir el archivo notebook deseado.
 
 ## Notebooks
-This project contains the following Jupyter notebooks:
+El proyecto contiene los siguientes notebooks de Jupyter:
+- `01_exploratory_data_analysis.ipynb`: Pasos de preprocesamiento, análisis exploratorio de datos y visualizaciones.
+- `02_model_training.ipynb`: Entrenamiento de modelos y ajuste de hiperparámetros.
+- `03_model_evaluation.ipynb`: Evaluación de modelos, comparación y métricas de rendimiento.
+- `04_explainability.ipynb`: Explicación de resultados del modelo utilizando SHAP.
 
-- `01_exploratory_data_analysis.ipynb`: Preprocessing steps, exploratory data analysis and visualizations.
-- `02_model_training.ipynb`: Models training and hyperparameter tuning.
-- `03_model_evaluation.ipynb`: Models evaluation, comparison and performance metrics.
-- `04_explainability.ipynb`: Explanation of model results with SHAP
+## Entrenamiento del Modelo
+El código correspondiente al entrenamiento de los modelos se encuentra en el notebook `02_model_training.ipynb`. 
+Incluye:
+- Selección de modelos
+- Ajuste de hiperparámetros
 
-## Model Training
-You can find the code to train the models in the `02_model_training.ipynb` notebook. It includes:
+## Evaluación del Modelo
+La evaluación de los modelos se realiza en el notebook `03_model_evaluation.ipynb`. Incluye:
+- Comparación entre modelos
+- Visualización del rendimiento de los modelos
+- Visualización de la importancia de las variables
 
-- Model selection
-- Hyperparameter tuning
+## Explicabilidad
+La explicación detallada de los resultados del modelo se presenta en el notebook `04_explainability.ipynb`. Incluye:
+- Gráfico resumen para visualizar la contribución global de cada variable a la predicción
+- Gráfico de fuerza para una instancia de cada clase, con el fin de proporcionar explicabilidad local
+- Gráficos de dependencia de las variables más importantes
 
-## Model Evaluation
-The evaluation of the models is performed in the `03_model_evaluation.ipynb` notebook. It includes:
-
-- Models comparison
-- Visualizations of models performance
-- Visualization of features' importance
-
-## Explainability
-A detailed explanation of the model results can be found in the `04_explainability.ipynb` notebook. 
-It includes:
-
-- Summary plot to visualize global contribution of each feature to the prediction
-- Force plot for an instance of both classes for local explainability
-- Dependency plots of the most important features
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+## Licencia
+Este proyecto está licenciado bajo la Licencia MIT. Para más detalles, consultar el archivo [LICENSE](LICENSE).
