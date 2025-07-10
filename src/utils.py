@@ -341,34 +341,3 @@ def plot_confusion_matrix(model, X_, y_, save=0):
         plt.savefig(f"images/figures/{model.__class__.__name__}_confusion_matrix.png".lower())
 
     plt.show()
-
-
-def plot_scaled_variance(X_, save=0):
-    """
-    Escala las variables del conjunto de datos mediante Min-Max Scaling y grafica la varianza de cada una de ellas.
-
-    Esto permite visualizar qué variables tienen mayor o menor dispersión relativa después del escalado.
-
-    :param X_: Conjunto de datos con variables numéricas a analizar.
-
-    :param save: int o bool, opcional. Si es distinto de cero o `True`, guarda el gráfico.
-    """
-
-    scaler = MinMaxScaler()
-    scaled_features = scaler.fit_transform(X_)
-
-    variance_df = pd.DataFrame(scaled_features, columns=X_.columns)
-    variance = variance_df.var()
-
-    plt.figure(figsize=(14, 6))
-    variance.plot(kind="bar", width=0.8)
-    plt.title("Varianza por atributo")
-    plt.xlabel("Atributo")
-    plt.ylabel("Varianza")
-    plt.xticks(rotation=45, ha="right")
-    plt.tight_layout()
-
-    if save:
-        plt.savefig("images/figures/variance.png".lower())
-
-    plt.show()
