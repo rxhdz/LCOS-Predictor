@@ -168,26 +168,3 @@ def plot_confusion_matrix(model, X_, y_, title, save=0):
         plt.savefig('images/figures/{}.png'.format(title).lower().replace(' ', '_'))
 
     plt.show()
-
-
-def plot_scaled_variance(X_, save=0, save_name='images/figures/variance.png'):
-    scaler = MinMaxScaler()
-    scaled_features = scaler.fit_transform(X_)
-
-    variance_df = pd.DataFrame(scaled_features, columns=X_.columns)
-    variance = variance_df.var()
-
-    plt.figure(figsize=(14, 6))
-    variance.plot(kind='bar', width=0.8)
-    plt.title('Variance of Each Feature')
-    plt.xlabel('Feature')
-    plt.ylabel('Variance')
-    plt.xticks(rotation=45, ha='right')
-    plt.tight_layout()
-
-    if save:
-        plt.savefig(save_name)
-
-    plt.show()
-
-
