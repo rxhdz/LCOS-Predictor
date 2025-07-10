@@ -91,6 +91,7 @@ def best_model_per_grid(model, p_grid, X_, y_, criteria="accuracy"):
     """
     Realiza un GridSearch para encontrar la mejor combinación de hiperparámetros
     para un modelo dado, utilizando validación cruzada y una métrica específica como criterio de evaluación.
+    Imprime los mejores parámetros y la máxima precisión alcanzada.
 
     :param model: Modelo base que se desea ajustar. Debe ser compatible con `GridSearchCV` (es decir, tener `.fit` y soportar hiperparámetros definidos en `p_grid`).
 
@@ -108,6 +109,8 @@ def best_model_per_grid(model, p_grid, X_, y_, criteria="accuracy"):
 
     grid_search = GridSearchCV(model, p_grid, cv=5, scoring=criteria)
     grid_search.fit(X_, y_)
+
+    print(grid_search.best_params_, grid_search.best_score_)
 
     return grid_search.best_estimator_
 
